@@ -12,7 +12,7 @@ describe("launches api", () => {
   describe("test GET /launches", () => {
     test("it should respond with 200 success", async () => {
       const response = await request(app)
-        .get("/launches")
+        .get("/v1/launches")
         .expect("Content-Type", /json/)
         .expect(200);
     });
@@ -38,7 +38,7 @@ describe("launches api", () => {
     };
     test("t should be respond with 201 success ", async () => {
       const response = await request(app)
-        .post("/launches")
+        .post("/v1/launches")
         .send(completeLaunchData)
         .expect("Content-Type", /json/)
         .expect(201);
@@ -49,7 +49,7 @@ describe("launches api", () => {
     });
     test("it should catch required properties", async () => {
       const response = await request(app)
-        .post("/launches")
+        .post("/v1/launches")
         .send(launchDataWithOutDate)
         .expect("Content-Type", /json/)
         .expect(400);
@@ -59,7 +59,7 @@ describe("launches api", () => {
     });
     test("it should catch invalid dates ", async () => {
       const response = await request(app)
-        .post("/launches")
+        .post("/v1/launches")
         .send(launchDataWithInvalidDate)
         .expect("Content-Type", /json/)
         .expect(400);
